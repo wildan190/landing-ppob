@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('posts', [\App\Http\Controllers\Api\Web\PostController::class, 'index']);
 Route::get('home', [\App\Http\Controllers\Api\Web\HomeController::class, 'index']);
+Route::get('posts/{slug}', [\App\Http\Controllers\Api\Web\PostController::class, 'showArticle']);
 
 Route::prefix('auth')->group(function () {
     Route::post('register', [AuthController::class, 'register']);
