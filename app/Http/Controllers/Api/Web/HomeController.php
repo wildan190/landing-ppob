@@ -7,5 +7,11 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    //
+    public function index(){
+        $settings = \App\Models\WebSetting::first();
+
+        return response()->json([
+            'settings' => $settings,
+        ]);
+    }
 }

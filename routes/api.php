@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::get('posts', [\App\Http\Controllers\Api\Web\PostController::class, 'index']);
+Route::get('home', [\App\Http\Controllers\Api\Web\HomeController::class, 'index']);
 
 Route::prefix('auth')->group(function () {
     Route::post('register', [AuthController::class, 'register']);
