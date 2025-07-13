@@ -15,22 +15,21 @@ class WebSettingController extends Controller
         return response()->json($setting);
     }
 
-    public function store(WebSettingRequest $request): JsonResponse
+    public function createOrUpdate(WebSettingRequest $request): JsonResponse
     {
-        $existing = WebSetting::first();
+        $data = $request->validated();
 
-        if ($existing) {
-            return response()->json(['message' => 'WebSetting already exists.'], 400);
+        $setting = WebSetting::first();
+
+        if ($setting) {
+            $setting->update($data);
+        } else {
+            $setting = WebSetting::create($data);
         }
 
-        $setting = WebSetting::create($request->validated());
-        return response()->json($setting, 201);
-    }
-
-    public function update(WebSettingRequest $request, $id): JsonResponse
-    {
-        $setting = WebSetting::findOrFail($id);
-        $setting->update($request->validated());
-        return response()->json($setting);
+        return response()->json([
+            'message' => 'Web setting saved successfully.',
+            'data' => $setting,
+        ], 200);
     }
 }

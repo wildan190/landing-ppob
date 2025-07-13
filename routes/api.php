@@ -37,6 +37,5 @@ Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
 
 Route::prefix('admin')->prefix('admin')->group(function () {
     Route::get('web-setting', [WebSettingController::class, 'index']);
-    Route::post('web-setting', [WebSettingController::class, 'store']);
-    Route::put('web-setting/{id}', [WebSettingController::class, 'update']);
+    Route::post('web-setting', [WebSettingController::class, 'createOrUpdate']);
 });
