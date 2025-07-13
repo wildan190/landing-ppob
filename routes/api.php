@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Admin\AdminCategoryController;
 use App\Http\Controllers\Api\Admin\AdminPostController;
+use App\Http\Controllers\Api\Admin\WebSettingController;
 use App\Http\Controllers\Api\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -31,4 +32,10 @@ Route::middleware('auth:sanctum')->prefix('admin')->group(function () {
     Route::get('posts/{id}',   [AdminPostController::class, 'show']);
     Route::put('posts/{id}',   [AdminPostController::class, 'update']);
     Route::delete('posts/{id}',[AdminPostController::class, 'destroy']);
+});
+
+Route::prefix('admin')->prefix('admin')->group(function () {
+    Route::get('web-setting', [WebSettingController::class, 'index']);
+    Route::post('web-setting', [WebSettingController::class, 'store']);
+    Route::put('web-setting/{id}', [WebSettingController::class, 'update']);
 });
